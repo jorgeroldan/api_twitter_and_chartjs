@@ -1,13 +1,20 @@
 // const API = 'https://swapi.co/api'
 const API = 'https://api.giphy.com'
+const key = 'WS7LSZoz5uwS7c0BDYgoVQVLbgHMLQBl'
 
-// example 'https://api.twitter.com/1.1/search/tweets.json?q=nasa&result_type=popular
+// example Twitter 'https://api.twitter.com/1.1/search/tweets.json?q=nasa&result_type=popular
 
 // API GIPHY
 // http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=i5fuQg464oUOLaOpN1CQQUusWHGA5p78&limit=2
 
 // Convertir el string de la response request en un objeto
 function fetchJson(url) {
+  // let respuestaRequest = JSON.parse(url)
+  // let values = Object.values(respuestaRequest)
+  // let Keys = Object.keys(respuestaRequest)
+  // console.log(values)
+  // console.log(Keys)
+
   return fetch(url).then(response => response.json())
 }
 
@@ -43,10 +50,11 @@ function createListItem(prop, value) {
 
 // Configurar la propiedades del objeto que quiero mostrar
 function setQueryDescription(person) {
-    let props = person
-  const props = [
-    'q',
-    'api_key'
+  // se 
+  let info = person.data[0].images.original
+  let props = [
+    'frames',
+    'url'
   ]
  
   // Guarda el elemento <ul> del DOM en el que vamos a incrustar los <li>
@@ -58,7 +66,7 @@ function setQueryDescription(person) {
  
 //REQUEST FUNCTIONS: Hace la consulta a la API con los parametros de la URL 
 function getPerson(queryValue) {
-  return fetchJson(`${API}/v1/gifs/search?q=${queryValue}&api_key=i5fuQg464oUOLaOpN1CQQUusWHGA5p78&limit=2`)
+  return fetchJson(`${API}/v1/gifs/search?q=${queryValue}&api_key=${key}&limit=2`)
 }
 
 // API GIPHY
